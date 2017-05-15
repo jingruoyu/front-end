@@ -1,7 +1,10 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 import Hello from '../components/Hello.vue'
 import showId from '../components/showId.vue'
 import bar from '../components/bar.vue'
 
+Vue.use(VueRouter)
 
 const routes =  [
 	{
@@ -26,5 +29,16 @@ const routes =  [
     }
 ]
 
-export default routes;
+const router = new VueRouter({
+  mode:'history',
+  routes
+})
+
+router.beforeEach((to,from,next)=>{
+  console.log(to);
+  document.title = to.meta.title;
+  next();
+})
+
+export default router;
 

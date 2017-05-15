@@ -27,8 +27,11 @@ export default {
         },
         ...mapState({
             //箭头函数,state直接是store中的state
-            count: state => state.count,
-            //与根实例的store挂钩，直接获取this.$store.state.count
+            count: function (state) {
+                console.log(state.count)
+                return state.count.count;
+            },
+            //与根实例的store挂钩，直接获取this.$store.state.counts
             countAlias: 'count',
             //使用局部状态需要常规写法
             countPlusLocalState (state) {
