@@ -1,0 +1,132 @@
+.calendar-container {
+    width: 350px;
+    height: 300px;
+    position: relative;
+    font-family: "Microsoft YaHei";
+    font-weight: 100;
+    line-height: 1;
+    display: inline-block;
+}
+
+.calendar-title {
+    position: relative;
+    background-color: #f6f6f6;
+    height: 40px;
+    border: 1px solid #ccc;;
+}
+
+.calendar-pre-month {
+    left: 15px;
+    border-left: 2px solid #999999;
+    border-bottom: 2px solid #999999;
+}
+
+.calendar-next-month {
+    right: 15px;
+    border-top: 2px solid #999999;
+    border-right: 2px solid #999999;
+}
+
+.calendar-pre-month,
+.calendar-next-month {
+    position: absolute;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    transform: translate(0,-50%);
+    transform-origin: top center; 
+    transform: rotate(45deg);
+}
+
+.calendar-pre-month:hover {
+    border-left: 2px solid #ee4433;
+    border-bottom: 2px solid #ee4433;
+}
+
+.calendar-next-month:hover {
+    border-top: 2px solid #ee4433;
+    border-right: 2px solid #ee4433;
+    cursor: pointer;
+}
+
+.calendar-title-cont {
+    color: #ee4433;
+    font-size: 16px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.calendar-content {
+    width: 100%;
+    height: 260px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    background: #fff;
+}
+
+.single-calendar {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.left-calendar {
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.right-calendar {
+    border-right: 1px solid #ccc;
+}
+
+.calendar-content table {
+    height: 100%;
+}
+
+.calendar-content table thead {
+    height: 20px;
+    font-size: 14px;
+    color: #666;
+}
+
+.calendar-content table thead tr th {
+    height: 20px;
+    width: 50px;
+    color: #666;
+    font-weight: normal;
+    font-style: normal;
+    text-align: center;
+}
+
+.calendar-content table thead tr th.sunday {
+    color: #ee4433;
+}
+
+.calendar-content table tbody tr {
+    margin-bottom: 10px;
+}
+
+.calendar-content table tbody tr td {
+    width: 40px;
+    height: 32px;
+    color: #666;
+    font-size: 12px;
+    text-align: center;
+    padding: 0px 1px;
+}
+
+.calendar-content table tbody tr td .calendar-date-price,
+.calendar-content table tbody tr td .calendar-date-num {
+    width: 45px;
+    height: 16px;
+    display: inline-block;
+    line-height: 20px;
+}
+
+.calendar-hover:hover,
+.calendar-selected {
+    background-color: #ee4433;
+    color: #ffffff;
+    cursor: pointer;
+}

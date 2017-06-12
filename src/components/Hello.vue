@@ -1,10 +1,11 @@
 <template>
     <div class="hello">
         <h1>{{getMsg}}</h1>
-        <h1>{{count}}</h1>
-        <h1>{{doneTodosCount}}</h1>
-        <button @click="increment({num:10})">addCount</button>
-        <router-view></router-view>
+        <p>count: {{count}}</p>
+        <p>countSquare: {{countSquare}}</p>
+        <button @click="increment(3)">addCount</button>
+        <button @click="reset">reset</button>
+        <router-view class="bar"></router-view>
     </div>
 </template>
 
@@ -17,7 +18,7 @@ export default {
     name: 'hello',
     data () {
         return {
-            msg: 'Welcome to Your Vue.js App',
+            msg: 'Hello',
             localCount: 1
         }
     },
@@ -25,32 +26,56 @@ export default {
         getMsg () {
             return this.msg;
         },
+        /*countSquare () {
+            return this.$store.getters['countModule/countSquare'];
+        },*/
         ...mapState({
             //箭头函数,state直接是store中的state
             count: function (state) {
-                console.log(state.count)
-                return state.count.count;
+                return state.countModule.count;
             },
-            //与根实例的store挂钩，直接获取this.$store.state.counts
-            countAlias: 'count',
+            //与根实例的store挂钩，直接获取this.$store.state.count
+            //countAlias: 'count',
             //使用局部状态需要常规写法
             countPlusLocalState (state) {
-                return state.count + this.localCount
+                return state.countModule.count + this.localCount
             }
         }),
-        ...mapGetters([
-            'doneTodosCount'
-        ])
+        ...mapGetters({
+            doneTodosCount: 'todosModule/doneTodosCount',
+            countSquare: 'countModule/countSquare'
+        })
+        
     }, 
     methods: {
-        ...mapMutations([
-            'increment'
-        ])
+        /*...mapMutations([
+            'countModule.increment',
+            'countModule.reset'
+        ])*/
+        increment (num) {
+            this.$store.commit('countModule/increment',num);
+        },
+        reset () {
+            this.$store.commit('countModule/reset');
+        }
     }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+h1, h2 {
+    font-weight: normal;
+    text-align: left;
+}
+p {
+    text-align: center;
+}
+.hello {
+    padding: 10px;
+    border:1px solid;
+}
+.bar {
+    margin: 10px;
+}
 </style>
