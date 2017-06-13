@@ -12,7 +12,15 @@
     position: relative;
     background-color: #f6f6f6;
     height: 40px;
-    border: 1px solid #ccc;;
+    border: 1px solid #ccc;
+}
+
+.calendar-title-left {
+    border-right: 0;
+}
+
+.calendar-title-right {
+    border-left: 0;
 }
 
 .calendar-pre-month {

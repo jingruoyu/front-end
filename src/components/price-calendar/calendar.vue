@@ -1,6 +1,6 @@
 <template>
     <div class="calendar-container" ref="calendar" @click.stop="">
-        <div class="calendar-title">
+        <div class="calendar-title" :class="{'calendar-title-left':pre,'calendar-title-right':next}">
             <span class="calendar-pre-month" v-if="pre" @click="changeMonth('pre')">前</span>
             <span class="calendar-title-cont">{{calendar.title}}</span>
             <span class="calendar-next-month" v-if="next" @click="changeMonth('next')">后</span>
@@ -61,6 +61,7 @@ module.exports = {
                 var index = this.selectDays.indexOf(day);
                 this.selectDays.splice(index,1);
             }
+            this.$emit("daterange");
         },
         hasSelectedDate (day) {
             return this.selectDays.indexOf(day)===-1?false:true;
