@@ -280,6 +280,7 @@
                         date: day,
                         today: today>date?-1:(today === date?0:1)
                     }
+                    
                     if(date.getDay() === 0) {
                         DateList.data.push(weekList);
                         weekList = [];
