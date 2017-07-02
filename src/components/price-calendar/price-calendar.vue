@@ -90,7 +90,6 @@
 </style>
 <script scoped>
     var calendar = require('./calendar.vue');
-    //var util = require('./lib/utils');
     var format = function (timestamp) {
         var timeData = new Date(timestamp);
         var year = timeData.getFullYear();
@@ -105,11 +104,6 @@
         components:{
             calendar: calendar
         },
-        props: {
-            price: {
-                type: Array
-            }
-        },
         data: function () {
             return {
                 show: false,
@@ -119,9 +113,18 @@
                 rightSelectDays_tmp: [],
                 dateRangeCount:0,
                 priceTotal:0,
+                price: {},
                 calendarData: {
                     leftData: {"title":"2017-05","data":[[{"date":0,"today":-1},{"date":1,"today":-1},{"date":2,"today":-1},{"date":3,"today":-1},{"date":4,"today":-1},{"date":5,"today":-1},{"date":6,"today":-1}],[{"date":7,"today":-1},{"date":8,"today":-1},{"date":9,"today":-1},{"date":10,"today":-1},{"date":11,"today":-1},{"date":12,"today":-1},{"date":13,"today":-1}],[{"date":14,"today":-1},{"date":15,"today":-1},{"date":16,"today":-1},{"date":17,"today":-1},{"date":18,"today":-1},{"date":19,"today":-1},{"date":20,"today":-1}],[{"date":21,"today":-1},{"date":22,"today":-1},{"date":23,"today":-1},{"date":24,"today":-1},{"date":25,"today":-1},{"date":26,"today":-1},{"date":27,"today":-1}],[{"date":28,"today":-1},{"date":29,"today":-1},{"date":30,"today":-1},{"date":31,"today":0,"price":"1","available":"true","status":"0","dateId":"20170531","dateTimestamp":1496188800000,"series":0},{"date":0,"today":-1},{"date":0,"today":-1},{"date":0,"today":-1}]]},
-                    rightData: {"title":"2017-06","data":[[{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":1,"today":1,"price":"1","available":"true","status":"0","dateId":"20170601","dateTimestamp":1496275200000,"series":0},{"date":2,"today":1,"price":"1","available":"true","status":"0","dateId":"20170602","dateTimestamp":1496361600000,"series":0},{"date":3,"today":1,"price":"1","available":"true","status":"0","dateId":"20170603","dateTimestamp":1496448000000,"series":0}],[{"date":4,"today":1,"available":"false","status":"2","dateId":"20170604","dateTimestamp":1496534400000,"series":0},{"date":5,"today":1,"available":"false","status":"2","dateId":"20170605","dateTimestamp":1496620800000,"series":0},{"date":6,"today":1,"available":"false","status":"2","dateId":"20170606","dateTimestamp":1496707200000,"series":0},{"date":7,"today":1,"available":"false","status":"2","dateId":"20170607","dateTimestamp":1496793600000,"series":0},{"date":8,"today":1,"price":"1","available":"true","status":"0","dateId":"20170608","dateTimestamp":1496880000000,"series":0},{"date":9,"today":1,"price":"1","available":"true","status":"0","dateId":"20170609","dateTimestamp":1496966400000,"series":0},{"date":10,"today":1,"available":"false","status":"2","dateId":"20170610","dateTimestamp":1497052800000,"series":0}],[{"date":11,"today":1,"price":"1","available":"true","status":"0","dateId":"20170611","dateTimestamp":1497139200000,"series":0},{"date":12,"today":1,"available":"false","status":"2","dateId":"20170612","dateTimestamp":1497225600000,"series":0},{"date":13,"today":1,"available":"false","status":"2","dateId":"20170613","dateTimestamp":1497312000000,"series":0},{"date":14,"today":1,"available":"false","status":"2","dateId":"20170614","dateTimestamp":1497398400000,"series":0},{"date":15,"today":1,"available":"false","status":"2","dateId":"20170615","dateTimestamp":1497484800000,"series":0},{"date":16,"today":1,"available":"false","status":"2","dateId":"20170616","dateTimestamp":1497571200000,"series":0},{"date":17,"today":1,"available":"false","status":"2","dateId":"20170617","dateTimestamp":1497657600000,"series":0}],[{"date":18,"today":1,"available":"false","status":"2","dateId":"20170618","dateTimestamp":1497744000000,"series":0},{"date":19,"today":1,"available":"false","status":"2","dateId":"20170619","dateTimestamp":1497830400000,"series":0},{"date":20,"today":1,"available":"false","status":"2","dateId":"20170620","dateTimestamp":1497916800000,"series":0},{"date":21,"today":1,"available":"false","status":"2","dateId":"20170621","dateTimestamp":1498003200000,"series":0},{"date":22,"today":1,"price":"1","available":"true","status":"0","dateId":"20170622","dateTimestamp":1498089600000,"series":0},{"date":23,"today":1,"price":"1","available":"true","status":"0","dateId":"20170623","dateTimestamp":1498176000000,"series":0},{"date":24,"today":1,"price":"1","available":"true","status":"0","dateId":"20170624","dateTimestamp":1498262400000,"series":0}],[{"date":25,"today":1,"price":"1","available":"true","status":"0","dateId":"20170625","dateTimestamp":1498348800000,"series":0},{"date":26,"today":1,"available":"false","status":"2","dateId":"20170626","dateTimestamp":1498435200000,"series":0},{"date":27,"today":1,"available":"false","status":"2","dateId":"20170627","dateTimestamp":1498521600000,"series":0},{"date":28,"today":1,"price":"1","available":"true","status":"0","dateId":"20170628","dateTimestamp":1498608000000,"series":0},{"date":29,"today":1,"price":"1","available":"true","status":"0","dateId":"20170629","dateTimestamp":1498694400000,"series":0},{"date":30,"today":1,"price":"1","available":"true","status":"0","dateId":"20170630","dateTimestamp":1498780800000,"series":0},{"date":0,"today":0}]]}
+                    rightData: {"title":"2017-06","data":[[{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":1,"today":1,"price":"1","available":"true","status":"0","dateId":"20170601","dateTimestamp":1496275200000,"series":0},{"date":2,"today":1,"price":"1","available":"true","status":"0","dateId":"20170602","dateTimestamp":1496361600000,"series":0},{"date":3,"today":1,"price":"1","available":"true","status":"0","dateId":"20170603","dateTimestamp":1496448000000,"series":0}],[{"date":4,"today":1,"available":"false","status":"2","dateId":"20170604","dateTimestamp":1496534400000,"series":0},{"date":5,"today":1,"available":"false","status":"2","dateId":"20170605","dateTimestamp":1496620800000,"series":0},{"date":6,"today":1,"available":"false","status":"2","dateId":"20170606","dateTimestamp":1496707200000,"series":0},{"date":7,"today":1,"available":"false","status":"2","dateId":"20170607","dateTimestamp":1496793600000,"series":0},{"date":8,"today":1,"price":"1","available":"true","status":"0","dateId":"20170608","dateTimestamp":1496880000000,"series":0},{"date":9,"today":1,"price":"1","available":"true","status":"0","dateId":"20170609","dateTimestamp":1496966400000,"series":0},{"date":10,"today":1,"available":"false","status":"2","dateId":"20170610","dateTimestamp":1497052800000,"series":0}],[{"date":11,"today":1,"price":"1","available":"true","status":"0","dateId":"20170611","dateTimestamp":1497139200000,"series":0},{"date":12,"today":1,"available":"false","status":"2","dateId":"20170612","dateTimestamp":1497225600000,"series":0},{"date":13,"today":1,"available":"false","status":"2","dateId":"20170613","dateTimestamp":1497312000000,"series":0},{"date":14,"today":1,"available":"false","status":"2","dateId":"20170614","dateTimestamp":1497398400000,"series":0},{"date":15,"today":1,"available":"false","status":"2","dateId":"20170615","dateTimestamp":1497484800000,"series":0},{"date":16,"today":1,"available":"false","status":"2","dateId":"20170616","dateTimestamp":1497571200000,"series":0},{"date":17,"today":1,"available":"false","status":"2","dateId":"20170617","dateTimestamp":1497657600000,"series":0}],[{"date":18,"today":1,"available":"false","status":"2","dateId":"20170618","dateTimestamp":1497744000000,"series":0},{"date":19,"today":1,"available":"false","status":"2","dateId":"20170619","dateTimestamp":1497830400000,"series":0},{"date":20,"today":1,"available":"false","status":"2","dateId":"20170620","dateTimestamp":1497916800000,"series":0},{"date":21,"today":1,"available":"false","status":"2","dateId":"20170621","dateTimestamp":1498003200000,"series":0},{"date":22,"today":1,"price":"1","available":"true","status":"0","dateId":"20170622","dateTimestamp":1498089600000,"series":0},{"date":23,"today":1,"price":"1","available":"true","status":"0","dateId":"20170623","dateTimestamp":1498176000000,"series":0},{"date":24,"today":1,"price":"1","available":"true","status":"0","dateId":"20170624","dateTimestamp":1498262400000,"series":0}],[{"date":25,"today":1,"price":"1","available":"true","status":"0","dateId":"20170625","dateTimestamp":1498348800000,"series":0},{"date":26,"today":1,"available":"false","status":"2","dateId":"20170626","dateTimestamp":1498435200000,"series":0},{"date":27,"today":1,"available":"false","status":"2","dateId":"20170627","dateTimestamp":1498521600000,"series":0},{"date":28,"today":1,"price":"1","available":"true","status":"0","dateId":"20170628","dateTimestamp":1498608000000,"series":0},{"date":29,"today":1,"price":"1","available":"true","status":"0","dateId":"20170629","dateTimestamp":1498694400000,"series":0},
+                        {
+                            "date":30,
+                            "today":1,
+                            "price":"1",
+                            "available":"true",
+                            "dateId":"20170630"
+                        },
+                        {"date":0,"today":0}]]}
                 }
             }
         },
@@ -129,9 +132,9 @@
         watch: {
             price: {
                 handler: function (newVal) {
-                    /*var monthData = util.monthData(newVal);
+                    var monthData = this.monthData(newVal);
                     this.calendarData.leftData = monthData.leftData;
-                    this.calendarData.rightData = monthData.rightData;*/
+                    this.calendarData.rightData = monthData.rightData;
                 },
                 deep: true
             },
@@ -215,7 +218,7 @@
                     default:
                         break;
                 }
-                var monthData = util.monthData(this.price, year, month);
+                var monthData = this.monthData(this.price, year, month);
                 this.calendarData.leftData = monthData.leftData;
                 this.calendarData.rightData = monthData.rightData;
             },
@@ -250,6 +253,45 @@
                     dateList:days
                 });
                 this.show = false;
+            },
+            monthData (message,year,month) {
+                year = year || new Date().getFullYear();
+                month = month || new Date().getMonth() + 1;
+                var date = '' + year + '-' + (month<10?'0'+month:month) + '-' + '01'; 
+                date = new Date(date);
+                return {
+                    leftData: this.getDateList(date,message),
+                    rightData: this.getDateList(date,message),
+                }
+            },
+            getDateList (date,message) {
+                var day = 1;
+                var oldMonth = date.getMonth();
+                var DateList = {
+                    title:date.getFullYear()+'-'+(oldMonth+1<10?'0'+(oldMonth+1):oldMonth+1),
+                    data: []
+                };
+                var weekList = []
+                var today = new Date();
+                var firstDayWeek = date.getDay();
+                weekList = weekList.concat(new Array(firstDayWeek).fill({date: 0,today: 0}));
+                while (oldMonth === date.getMonth()) {
+                    var data = {
+                        date: day,
+                        today: today>date?-1:(today === date?0:1)
+                    }
+                    if(date.getDay() === 0) {
+                        DateList.data.push(weekList);
+                        weekList = [];
+                    }
+                    weekList.push(data);
+                    date.setDate(day+1);
+                    day = date.getDate();
+                }
+                var lastDayWeek = date.getDay()-1;
+                weekList = weekList.concat(new Array(6-lastDayWeek).fill({date: 0,today: 0}));
+                DateList.data.push(weekList);
+                return DateList;
             }
         }
     }
