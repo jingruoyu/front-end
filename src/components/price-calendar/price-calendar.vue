@@ -70,11 +70,12 @@
         color: red;
     }
 
-    button {
+    .confirm,.cancel {
         height: 100%;
         width: 80px;
         float: right;
         border: 0;
+        margin: 0;
         cursor: pointer;
     }
 
@@ -89,7 +90,7 @@
     }
 </style>
 <script scoped>
-    var calendar = require('./calendar.vue');
+    import calendar from './calendar.vue'
     var format = function (timestamp) {
         var timeData = new Date(timestamp);
         var year = timeData.getFullYear();
@@ -99,11 +100,17 @@
         date = date < 10 ? '0' + date : date;
         return year + '-' + month + '-' + date;
     };
-    module.exports = {
+    export default {
         name: 'price-calendar',
         components:{
             calendar: calendar
         },
+        props: {
+            price: {
+                type: Object,
+                default: {}
+            }
+        }
         data: function () {
             return {
                 show: false,
@@ -115,20 +122,16 @@
                 priceTotal:0,
                 price: {},
                 calendarData: {
-                    leftData: {"title":"2017-05","data":[[{"date":0,"today":-1},{"date":1,"today":-1},{"date":2,"today":-1},{"date":3,"today":-1},{"date":4,"today":-1},{"date":5,"today":-1},{"date":6,"today":-1}],[{"date":7,"today":-1},{"date":8,"today":-1},{"date":9,"today":-1},{"date":10,"today":-1},{"date":11,"today":-1},{"date":12,"today":-1},{"date":13,"today":-1}],[{"date":14,"today":-1},{"date":15,"today":-1},{"date":16,"today":-1},{"date":17,"today":-1},{"date":18,"today":-1},{"date":19,"today":-1},{"date":20,"today":-1}],[{"date":21,"today":-1},{"date":22,"today":-1},{"date":23,"today":-1},{"date":24,"today":-1},{"date":25,"today":-1},{"date":26,"today":-1},{"date":27,"today":-1}],[{"date":28,"today":-1},{"date":29,"today":-1},{"date":30,"today":-1},{"date":31,"today":0,"price":"1","available":"true","status":"0","dateId":"20170531","dateTimestamp":1496188800000,"series":0},{"date":0,"today":-1},{"date":0,"today":-1},{"date":0,"today":-1}]]},
-                    rightData: {"title":"2017-06","data":[[{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":0,"today":0},{"date":1,"today":1,"price":"1","available":"true","status":"0","dateId":"20170601","dateTimestamp":1496275200000,"series":0},{"date":2,"today":1,"price":"1","available":"true","status":"0","dateId":"20170602","dateTimestamp":1496361600000,"series":0},{"date":3,"today":1,"price":"1","available":"true","status":"0","dateId":"20170603","dateTimestamp":1496448000000,"series":0}],[{"date":4,"today":1,"available":"false","status":"2","dateId":"20170604","dateTimestamp":1496534400000,"series":0},{"date":5,"today":1,"available":"false","status":"2","dateId":"20170605","dateTimestamp":1496620800000,"series":0},{"date":6,"today":1,"available":"false","status":"2","dateId":"20170606","dateTimestamp":1496707200000,"series":0},{"date":7,"today":1,"available":"false","status":"2","dateId":"20170607","dateTimestamp":1496793600000,"series":0},{"date":8,"today":1,"price":"1","available":"true","status":"0","dateId":"20170608","dateTimestamp":1496880000000,"series":0},{"date":9,"today":1,"price":"1","available":"true","status":"0","dateId":"20170609","dateTimestamp":1496966400000,"series":0},{"date":10,"today":1,"available":"false","status":"2","dateId":"20170610","dateTimestamp":1497052800000,"series":0}],[{"date":11,"today":1,"price":"1","available":"true","status":"0","dateId":"20170611","dateTimestamp":1497139200000,"series":0},{"date":12,"today":1,"available":"false","status":"2","dateId":"20170612","dateTimestamp":1497225600000,"series":0},{"date":13,"today":1,"available":"false","status":"2","dateId":"20170613","dateTimestamp":1497312000000,"series":0},{"date":14,"today":1,"available":"false","status":"2","dateId":"20170614","dateTimestamp":1497398400000,"series":0},{"date":15,"today":1,"available":"false","status":"2","dateId":"20170615","dateTimestamp":1497484800000,"series":0},{"date":16,"today":1,"available":"false","status":"2","dateId":"20170616","dateTimestamp":1497571200000,"series":0},{"date":17,"today":1,"available":"false","status":"2","dateId":"20170617","dateTimestamp":1497657600000,"series":0}],[{"date":18,"today":1,"available":"false","status":"2","dateId":"20170618","dateTimestamp":1497744000000,"series":0},{"date":19,"today":1,"available":"false","status":"2","dateId":"20170619","dateTimestamp":1497830400000,"series":0},{"date":20,"today":1,"available":"false","status":"2","dateId":"20170620","dateTimestamp":1497916800000,"series":0},{"date":21,"today":1,"available":"false","status":"2","dateId":"20170621","dateTimestamp":1498003200000,"series":0},{"date":22,"today":1,"price":"1","available":"true","status":"0","dateId":"20170622","dateTimestamp":1498089600000,"series":0},{"date":23,"today":1,"price":"1","available":"true","status":"0","dateId":"20170623","dateTimestamp":1498176000000,"series":0},{"date":24,"today":1,"price":"1","available":"true","status":"0","dateId":"20170624","dateTimestamp":1498262400000,"series":0}],[{"date":25,"today":1,"price":"1","available":"true","status":"0","dateId":"20170625","dateTimestamp":1498348800000,"series":0},{"date":26,"today":1,"available":"false","status":"2","dateId":"20170626","dateTimestamp":1498435200000,"series":0},{"date":27,"today":1,"available":"false","status":"2","dateId":"20170627","dateTimestamp":1498521600000,"series":0},{"date":28,"today":1,"price":"1","available":"true","status":"0","dateId":"20170628","dateTimestamp":1498608000000,"series":0},{"date":29,"today":1,"price":"1","available":"true","status":"0","dateId":"20170629","dateTimestamp":1498694400000,"series":0},
-                        {
-                            "date":30,
-                            "today":1,
-                            "price":"1",
-                            "available":"true",
-                            "dateId":"20170630"
-                        },
-                        {"date":0,"today":0}]]}
+                    leftData: {},
+                    rightData: {}
                 }
             }
         },
-        beforeMount: function () {},
+        beforeMount: function () {
+            var monthData = this.monthData(this.price);
+            this.calendarData.leftData = monthData.leftData;
+            this.calendarData.rightData = monthData.rightData;
+        },
         watch: {
             price: {
                 handler: function (newVal) {
@@ -148,11 +151,13 @@
         },
         computed: {
             shortSelectedDate: function () {
+                console.log('before'+this.selectedDate);
                 if (this.selectedDate.length > 17) {
                     return this.selectedDate.slice(0,17) + '...';
                 } else {
                     return this.selectedDate;
                 }
+                console.log('after'+this.selectedDate);
             }
         },
         methods: {
@@ -269,7 +274,7 @@
                 var oldMonth = date.getMonth();
                 var DateList = {
                     title:date.getFullYear()+'-'+(oldMonth+1<10?'0'+(oldMonth+1):oldMonth+1),
-                    data: []
+                    data: [],
                 };
                 var weekList = []
                 var today = new Date();
@@ -278,9 +283,14 @@
                 while (oldMonth === date.getMonth()) {
                     var data = {
                         date: day,
-                        today: today>date?-1:(today === date?0:1)
+                        today: today>date?-1:(today === date?0:1),
+                        dateId: format(date)
                     }
-                    
+                    if (this.price[format(date)]) {
+                        for(var key in this.price[format(date)]) {
+                            data[key] = this.price[format(date)][key];
+                        }
+                    }
                     if(date.getDay() === 0) {
                         DateList.data.push(weekList);
                         weekList = [];
