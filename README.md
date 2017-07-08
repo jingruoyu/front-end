@@ -31,6 +31,8 @@ For detailed explanation on how things work, checkout the [guide](http://vuejs-t
 
 # 价格日历
 
+价格日历路径为：127.0.0.1/priceCalendar
+
 日历组件传入参数格式为
 
     //price
