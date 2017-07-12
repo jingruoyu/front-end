@@ -1,6 +1,6 @@
 <template>
     <div class="calendar-container" ref="calendar" @click.stop="">
-        <div class="calendar-title" :class="{'calendar-title-left':pre,'calendar-title-right':next}">
+        <div class="calendar-title" >
             <span class="calendar-pre-month" v-if="pre" @click="changeMonth('pre')">前</span>
             <span class="calendar-title-cont">{{calendar.title}}</span>
             <span class="calendar-next-month" v-if="next" @click="changeMonth('next')">后</span>
@@ -32,54 +32,5 @@
         </div>
     </div>
 </template>
-<script scoped>
-module.exports = {
-    data () {
-        return {
-            disableText: "已售出",
-            selectDays:[]
-        }
-    },
-    props: {
-        pre: {
-            default: true
-        },
-        next: {
-            default: true
-        },
-        calendar: {
-            required: true
-        }
-    },
-    computed: {
-        getContentClass () {
-            if(this.pre && this.next) {
-                return 'single-calendar';
-            }else if(this.pre) {
-                return 'left-calendar';
-            }else {
-                return 'right-calendar'
-            }
-        }
-    },
-    methods: {
-        selectDate (day) {
-            if(!day.available||day.available=="false") return;
-            if(this.selectDays.indexOf(day)===-1){
-                this.selectDays.push(day);
-            } else {
-                var index = this.selectDays.indexOf(day);
-                this.selectDays.splice(index,1);
-            }
-            this.$emit("daterange");
-        },
-        hasSelectedDate (day) {
-            return this.selectDays.indexOf(day)===-1?false:true;
-        },
-        changeMonth (type) {
-            this.$emit('changeMonth',type);
-        }
-    }
-}
-</script>
+<script src='./calendar.js'></script>
 <style src="./calendar.css" scoped></style>

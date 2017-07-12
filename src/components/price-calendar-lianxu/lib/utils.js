@@ -1,7 +1,7 @@
 /**
  * Created by WeiWang on 2016/12/11.
  */
-var _ = require('../../../lib/underscore.v1.8.3.js');
+var _ = require('./underscore.v1.8.3.js');
 var parentList = [];
 Date.prototype.DateToParse = function () {
     var d = this;
@@ -91,7 +91,8 @@ var getData = function (price, year, month) {
         ry = parseInt(ry) + 1;
         rm = rm % 12
     }
-    var data = {
+    //获取相邻两个月数据
+    /*var data = {
         leftData: {
             title: ly + '-' + (lm < 10 ? '0' + lm.toString() : lm),
             data: getMonthData(ly, lm, priceData)
@@ -100,6 +101,11 @@ var getData = function (price, year, month) {
             title: ry + '-' + (rm < 10 ? '0' + rm.toString() : rm),
             data: getMonthData(ry, rm, priceData)
         }
+    };*/
+    //获取本月数据
+    var data = {
+        title: ly + '-' + (lm < 10 ? '0' + lm.toString() : lm),
+        data: getMonthData(ly, lm, priceData)
     };
     return data;
 };
@@ -167,6 +173,7 @@ var isParent = function (child, parent) {
 };
 module.exports = {
     monthData: getData,
+    handlePrice: handlePrice,
     getPosition: getPosition,
     isParent: isParent
 };
