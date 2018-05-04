@@ -17,8 +17,8 @@ export default {
     -moz-osx-font-smoothing: grayscale;
     height: 100%;
     width: 100%;
-    background: url(./assets/background.jpg) no-repeat cover;
-
+    background: url(./assets/background.jpg) no-repeat;
+    background-size: 100%;
 }
 
 </style>
