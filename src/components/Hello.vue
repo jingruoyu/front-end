@@ -23,10 +23,13 @@ export default {
 <style scoped>
     .hello {
         position: absolute;
-        top: 50%;
+        top: 25%;
         left: 50%;
         transform: translate(-50%,-50%);
         color: white;
+    }
+
+    .welcome {
         font-size: 50px;
     }
 </style>
